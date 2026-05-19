@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h4>Apply for Accommodation</h4>
+<div class="card"><div class="card-body">
+<form>
+<div class="row g-3">
+  <div class="col-md-6"><label class="form-label">Hostel Preference</label>
+    <select class="form-select"><option>Block A</option><option>Block B</option><option>Block C</option></select></div>
+  <div class="col-md-6"><label class="form-label">Room Type</label>
+    <select class="form-select"><option>Single</option><option>Shared</option></select></div>
+  <div class="col-12"><label class="form-label">Special Requirements</label>
+    <textarea class="form-control" rows="3"></textarea></div>
+</div>
+<button type="button" class="btn mu-btn mt-3">Submit Application</button>
+</form></div></div>
+{% endblock %}

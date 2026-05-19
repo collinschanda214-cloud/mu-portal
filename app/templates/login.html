@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block auth_content %}
+<div class="login-wrap">
+  <div class="card shadow login-card">
+    <div class="card-body p-4">
+      <div class="text-center mb-3">
+        <h4 class="mu-blue mb-0"><i class="bi bi-mortarboard-fill"></i> Mulungushi University</h4>
+        <small class="text-muted">MU Portal</small>
+      </div>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for cat,msg in messages %}<div class="alert alert-{{cat}} py-2">{{msg}}</div>{% endfor %}
+      {% endwith %}
+      <form method="post">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+          <label class="form-label">Student Number</label>
+          {{ form.student_number(class="form-control", placeholder="e.g. 202204674") }}
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          {{ form.password(class="form-control") }}
+        </div>
+        <button class="btn mu-btn w-100">Login</button>
+      </form>
+      <p class="text-center small mt-3 mb-1">New student? <a href="{{ url_for('auth.register') }}">Create an account</a></p>
+      <p class="text-center small mt-1 text-muted">&copy; Mulungushi University</p>
+    </div>
+  </div>
+</div>
+{% endblock %}

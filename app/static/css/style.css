@@ -1,0 +1,36 @@
+:root { --mu-blue:#0b3d91; --mu-blue-dark:#082d6b; --mu-accent:#f5a623; }
+* { box-sizing:border-box; }
+html, body { max-width:100%; overflow-x:hidden; }
+body { background:#f4f6fa; font-family:'Segoe UI',sans-serif; }
+.mu-blue { color:var(--mu-blue); }
+.mu-header { background:var(--mu-blue); }
+.mu-btn { background:var(--mu-blue); color:#fff; }
+.mu-btn:hover { background:var(--mu-blue-dark); color:#fff; }
+.mu-thead { background:var(--mu-blue); color:#fff; }
+.mu-thead th { color:#fff !important; }
+
+.mu-shell { min-height:calc(100vh - 56px); }
+.mu-sidebar { width:250px; background:#fff; border-right:1px solid #e0e4ea; padding:10px 0; }
+.mu-sidebar .nav a { display:block; padding:10px 18px; color:#333; text-decoration:none; font-size:14px; border-left:3px solid transparent; }
+.mu-sidebar .nav a:hover { background:#eef2fb; color:var(--mu-blue); border-left-color:var(--mu-blue); }
+.mu-main { background:#f4f6fa; min-height:calc(100vh - 56px); min-width:0; }
+.mu-content { max-width:100%; }
+
+/* responsive tables */
+.table-responsive { -webkit-overflow-scrolling: touch; }
+table { word-break:break-word; }
+img, video { max-width:100%; height:auto; }
+
+.quick-card { transition:.2s; border:1px solid #e0e4ea; }
+.quick-card:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,.08); }
+
+.login-wrap { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:16px; background:linear-gradient(135deg,var(--mu-blue),#1e5fc1); }
+.login-card { width:100%; max-width:420px; border-radius:10px; }
+
+/* On <lg screens, sidebar becomes offcanvas drawer (Bootstrap handles via offcanvas-lg) */
+@media (max-width: 991.98px) {
+  .mu-sidebar { width: 260px; min-height: 100%; }
+}
+@media (min-width: 992px) {
+  .mu-sidebar.offcanvas-lg { position: static; transform: none !important; visibility: visible !important; }
+}

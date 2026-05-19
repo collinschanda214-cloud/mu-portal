@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block auth_content %}
+<div class="login-wrap" style="max-width:520px;">
+  <div class="card shadow login-card">
+    <div class="card-body p-4 text-center">
+      <h4 class="mu-blue"><i class="bi bi-check-circle-fill text-success"></i> Registration Successful</h4>
+      <p class="text-muted">Save these credentials carefully — you will need them to log in.</p>
+      <div class="table-responsive"><table class="table table-bordered mt-3">
+        <tr><th class="text-start">Student Number</th><td class="fs-5"><strong>{{ student_number }}</strong></td></tr>
+        <tr><th class="text-start">Password</th><td class="fs-5"><strong>{{ password }}</strong></td></tr>
+      </table></div>
+      <div class="alert alert-warning small">Please write these down. Your password is exactly 5 characters.</div>
+      {% if email_ok or sms_ok %}
+      <div class="alert alert-success small">
+        We've also sent your login details to:
+        {% if email_ok %}<div><i class="bi bi-envelope"></i> {{ email_to }}</div>{% endif %}
+        {% if sms_ok %}<div><i class="bi bi-phone"></i> {{ phone_to }}</div>{% endif %}
+      </div>
+      {% else %}
+      <div class="alert alert-secondary small">
+        Note: automatic email/SMS delivery is not configured yet, so please copy these credentials manually.
+      </div>
+      {% endif %}
+      <a href="{{ url_for('auth.login') }}" class="btn mu-btn w-100">Go to Login</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

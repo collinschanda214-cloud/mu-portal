@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<h4>Course Evaluation</h4>
+<div class="card mb-3"><div class="card-body py-2">
+  <strong>{{ enrollment.course.code }} — {{ enrollment.course.title }}</strong><br>
+  <small class="text-muted">{{ enrollment.academic_year }} / {{ enrollment.semester }}</small>
+</div></div>
+
+<form method="post" class="card p-3">
+  {{ form.hidden_tag() }}
+  <div class="mb-3">
+    <label class="form-label">{{ form.lecturer_name.label.text }}</label>
+    {{ form.lecturer_name(class="form-control") }}
+  </div>
+  <p class="text-muted small">Rate the lecturer on a scale of 1 (poor) to 5 (excellent).</p>
+  <div class="row">
+    {% for f in [form.knowledge, form.preparedness, form.clarity, form.punctuality, form.engagement, form.fairness, form.overall] %}
+      <div class="col-md-6 mb-3">
+        <label class="form-label">{{ f.label.text }}</label>
+        {{ f(class="form-control", min=1, max=5) }}
+      </div>
+    {% endfor %}
+  </div>
+  <div class="mb-3">
+    <label class="form-label">{{ form.comments.label.text }}</label>
+    {{ form.comments(class="form-control", rows=4,
+        placeholder="Comment on teaching style, content delivery, assessment, attitude, etc.") }}
+  </div>
+  <div>
+    <button class="btn mu-btn">Submit Evaluation</button>
+    <a href="{{ url_for('student.evaluation') }}" class="btn btn-link">Cancel</a>
+  </div>
+</form>
+{% endblock %}

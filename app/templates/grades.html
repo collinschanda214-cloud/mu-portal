@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<h4>CA / Grades</h4>
+
+{% if state == "none" %}
+  <div class="alert alert-danger mt-3" style="border:2px solid #b71c1c;">
+    <strong>No results have been uploaded.</strong><br>
+    Your lecturers have not yet uploaded any results. Please check back later.
+  </div>
+{% elif state == "partial" %}
+  <div class="alert alert-warning mt-3" style="border:2px solid #f57c00;">
+    <strong>Some results are missing.</strong><br>
+    If you have missing results, please contact your lecturer.
+  </div>
+  <div class="table-responsive"><table class="table table-bordered mt-3">
+  <thead class="mu-thead"><tr><th>Code</th><th>Course</th><th>Year</th><th>Sem</th><th>CA</th><th>Exam</th><th>Total</th><th>Grade</th></tr></thead>
+  <tbody>
+  {% for e in enrolls %}
+  <tr><td>{{ e.course.code }}</td><td>{{ e.course.title }}</td><td>{{ e.academic_year }}</td><td>{{ e.semester }}</td>
+  <td>{{ e.ca_mark }}</td><td>{{ e.exam_mark }}</td>
+  <td>{{ (e.ca_mark or 0) + (e.exam_mark or 0) }}</td>
+  <td><span class="badge bg-primary">{{ e.grade }}</span></td></tr>
+  {% endfor %}
+  </tbody></table></div>
+{% else %}
+  <div class="table-responsive"><table class="table table-bordered mt-3">
+  <thead class="mu-thead"><tr><th>Code</th><th>Course</th><th>Year</th><th>Sem</th><th>CA</th><th>Exam</th><th>Total</th><th>Grade</th></tr></thead>
+  <tbody>
+  {% for e in enrolls %}
+  <tr><td>{{ e.course.code }}</td><td>{{ e.course.title }}</td><td>{{ e.academic_year }}</td><td>{{ e.semester }}</td>
+  <td>{{ e.ca_mark }}</td><td>{{ e.exam_mark }}</td>
+  <td>{{ (e.ca_mark or 0) + (e.exam_mark or 0) }}</td>
+  <td><span class="badge bg-primary">{{ e.grade }}</span></td></tr>
+  {% endfor %}
+  </tbody></table></div>
+{% endif %}
+{% endblock %}

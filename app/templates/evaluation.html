@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h4>Course Evaluation</h4>
+<p class="text-muted">Evaluate the lecturer for each course you are taking this semester.</p>
+<div class="table-responsive"><table class="table mt-3">
+<thead class="mu-thead"><tr><th>Academic Year</th><th>Semester</th><th>Course</th><th></th></tr></thead>
+<tbody>
+{% for e in enrolls %}
+<tr><td>{{ e.academic_year }}</td><td>{{ e.semester }}</td>
+    <td>{{ e.course.code }} — {{ e.course.title }}</td>
+    <td>
+      {% if e.id in done_ids %}
+        <span class="badge bg-success">Submitted</span>
+      {% else %}
+        <a href="{{ url_for('student.evaluate_course', enrollment_id=e.id) }}" class="btn btn-sm mu-btn">Evaluate</a>
+      {% endif %}
+    </td></tr>
+{% else %}<tr><td colspan="4" class="text-muted">No courses to evaluate.</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}
